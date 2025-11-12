@@ -1,5 +1,5 @@
 resource "aws_security_group" "main" {
-  name        = var.sg_names #catalogue
+  name        = var.sg_name #catalogue
   description = var.sg_description
   vpc_id      = var.vpc_id
 
@@ -11,11 +11,11 @@ resource "aws_security_group" "main" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
- tags =merge (
+ tags = merge (
     var.sg_tags,
     local.common_tags,
     {
-        Name ="${local.common_name_suffix}-${var.sg_names}" #roboshop-dev-catalogue
+        Name ="${local.common_name_suffix}-${var.sg_name}" #roboshop-dev-catalogue
     }
  )
 }
